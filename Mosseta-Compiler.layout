@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="instruction.h" open="1" top="0" tabpos="2">
+		<Cursor position="142" topLine="0" />
+	</File>
+	<File name="instruction_t.h" open="1" top="1" tabpos="5">
+		<Cursor position="107" topLine="0" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="201" topLine="0" />
+	</File>
+	<File name="panic.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="140" topLine="8" />
+	</File>
+	<File name="panic.h" open="1" top="0" tabpos="3">
+		<Cursor position="17" topLine="0" />
+	</File>
+	<File name="read_file.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="175" topLine="0" />
+	</File>
+	<File name="write_file.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="105" topLine="1" />
+	</File>
+</CodeBlocks_layout_file>

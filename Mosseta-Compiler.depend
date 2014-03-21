@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1395410627 source:/media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/panic.cpp
+	<iostream>
+	<cstdio>
+	<cstdlib>
+	<string>
+
+1395409934 source:/media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	"instruction_t.h"
+
+1395410629 /media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/instruction_t.h
+	"instruction.h"
+
+1395410623 /media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/instruction.h
+
+1395410630 source:/media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/read_file.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<map>
+	<cmath>
+	"instruction_t.h"
+	"panic.h"
+
+1395410626 /media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/panic.h
+
+1395410632 source:/media/1516f024-5dc4-477a-95c4-cb1edff280c8/Mosseta-Compiler/write_file.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	"instruction_t.h"
+	"panic.h"
+
