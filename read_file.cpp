@@ -53,7 +53,12 @@ void parse_line(vector<string> &para, const string &src)
 			a[i] = ' ';
 	for(i = 0; i < l; i++)
 	{
-		if(i < l-1 && a[i] == ' ' && a[i+1] > 32)
+		if(a[i] == '\"')
+		{
+			para.push_back(buffer + a.substr(i, l-i+1));
+			return;
+		}
+		else if(i < l-1 && a[i] == ' ' && a[i+1] > 32)
 		{
 			para.push_back(buffer);
 			buffer.clear();
@@ -230,6 +235,11 @@ void read_file(string fname)
 					imem[icount].constant[i-1] = 1;
 					ftmp = parse_float(para[i].substr(0, para[i].length()-1));
 					imem[icount].iarg[i-1] = *reinterpret_cast<unsigned int*>(&ftmp);
+				}
+				else if(para[i][0] == ':')
+				{
+					imem[icount].constant[i-1] = 1;
+					imem[icount].iarg[i-1] = label[para[i]];
 				}
 				else
 				{
