@@ -197,6 +197,7 @@ void read_file(string fname)
 		if(inst == "" || inst[0] == ';')
 			continue;
 		++icount;
+		imem[icount].flag += 1000;
 		if(inst[0] == ':')
 		{
 			label[inst] = icount;
@@ -204,41 +205,54 @@ void read_file(string fname)
 		}
 		else
 		{
-			imem[icount].inst = parse_opcode(inst.substr(1, inst.length()-1)); //ipush
+			imem[icount].inst = (unsigned short)parse_opcode(inst.substr(1, inst.length()-1)); //ipush
+			if(inst[0] == 'f')
+				++imem[icount].flag;
+			else if(inst[0] == 'c')
+				imem[icount].flag += 2;
+			else if(inst[0] == 's')
+				imem[icount].flag += 3;
 			parse_line(para, src);
 			sz = para.size();
 			for(i = 1; i < sz; i++)
 			{
+				if(para[i][0] == ';')
+					break;
 				if(para[i][0] == 'r')
 				{
-					imem[icount].constant[i-1] = -1;
+					imem[icount].flag += pow(10, 3-i) * 2;
 					imem[icount].iarg[i-1] = parse_int(para[i].substr(1, para[i].length()-1));
 				}
 				else if(para[i][0] == 'f')
 				{
-					imem[icount].constant[i-1] = -1;
+					imem[icount].flag += pow(10, 3-i) * 2;
 					imem[icount].iarg[i-1] = 1024 + parse_int(para[i].substr(1, para[i].length()-1));
 				}
 				else if(para[i][0] == '[')
 				{
-					imem[icount].constant[i-1] = 0;
-					imem[icount].iarg[i-1] = parse_dmem(para[i].substr(1, para[i].length()-2));
+					if(para[i][1] >= '0' && para[i][1] <= '9')
+					{
+						imem[icount].flag += pow(10, 3-i) * 1;
+						imem[icount].iarg[i-1] = parse_dmem(para[i].substr(1, para[i].length()-2));
+					}
+					else if(para[i][1] == 'r') // [r0]
+					{
+						imem[icount].flag += pow(10, 3-i) * 3;
+						imem[icount].iarg[i-1] = parse_int(para[i].substr(2, para[i].length()-3));
+					}
 				}
 				else if(para[i][0] >= '0' && para[i][0] <= '9')
 				{
-					imem[icount].constant[i-1] = 1;
 					itmp = parse_int(para[i]);
 					imem[icount].iarg[i-1] = *reinterpret_cast<unsigned int*>(&itmp);
 				}
 				else if(para[i][para[i].length()-1] == 'f') //0.0f
 				{
-					imem[icount].constant[i-1] = 1;
 					ftmp = parse_float(para[i].substr(0, para[i].length()-1));
 					imem[icount].iarg[i-1] = *reinterpret_cast<unsigned int*>(&ftmp);
 				}
 				else if(para[i][0] == ':')
 				{
-					imem[icount].constant[i-1] = 1;
 					imem[icount].iarg[i-1] = label[para[i]];
 				}
 				else
@@ -249,6 +263,8 @@ void read_file(string fname)
 				}
 			}
 		}
+		//DEBUG
+		cout << icount << ' ' << imem[icount].flag << endl;
 	}
 	total_icount = icount;
 	fin.close();

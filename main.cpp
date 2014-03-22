@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 	if(argc < 3)
 	{
 		cout << "Mosseta-Compiler  Copyright (C) 2014 DLaboratory" << endl;
-		cout << "Version 0.0.1" << endl;
+		cout << "Version 0.0.1-rev2" << endl;
 		cout << "This program comes with ABSOLUTELY NO WARRANTY" << endl;
 		cout << "This is free software, and you are welcome to redistribute it under certain conditions." << endl;
 		cout << "Usage : " << argv[0] << " src.asm dest.bin" << endl;

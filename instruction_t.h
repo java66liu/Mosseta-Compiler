@@ -18,7 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "instruction.h"
 struct instruction_t
 {
-	opCode inst;
-	char constant[3];
 	unsigned int iarg[3];
+	unsigned short inst, flag;
+	instruction_t()
+	{
+		iarg[0] = iarg[1] = iarg[2] = 0;
+		inst = flag = 0;
+	}
 };
